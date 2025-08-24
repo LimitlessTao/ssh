@@ -1667,7 +1667,7 @@ cf_purge_cache() {
 	if [[ "$answer" == "y" ]]; then
 	  echo "CF情報が保存されます$CONFIG_FILE、後でCF情報を変更できます"
 	  read -e -p "API_TOKENを入力してください：" API_TOKEN
-	  read -e -p "CFユーザー名を入力してください：" EMAIL
+	  read -e -p "CFユーザ​​ー名を入力してください：" EMAIL
 	  read -e -p "ゾーン_id（スペースで区切られた複数）を入力してください。" -a ZONE_IDS
 
 	  mkdir -p /home/web/config/
@@ -5876,7 +5876,7 @@ delete_connection() {
 
 	local connection=$(sed -n "${num}p" "$CONFIG_FILE")
 	if [[ -z "$connection" ]]; then
-		echo "エラー：対応する接続は見つかりませんでした。"
+		echo "エラー：対応する接続​​は見つかりませんでした。"
 		return
 	fi
 
@@ -5898,7 +5898,7 @@ use_connection() {
 
 	local connection=$(sed -n "${num}p" "$CONFIG_FILE")
 	if [[ -z "$connection" ]]; then
-		echo "エラー：対応する接続は見つかりませんでした。"
+		echo "エラー：対応する接続​​は見つかりませんでした。"
 		return
 	fi
 
@@ -7652,7 +7652,7 @@ linux_ldnmp() {
 
 	  6)
 	  clear
-	  # 一本足のカウントカード
+	  # 独脚数卡
 	  webname="独脚数卡"
 	  send_stats "インストール$webname"
 	  echo "展開を開始します$webname"
@@ -8339,7 +8339,7 @@ linux_ldnmp() {
 				  ;;
 			  3)
 			  local ldnmp_pods="php"
-			  read -e -p "入力してください${ldnmp_pods}版本号 （如: 7.4 8.0 8.1 8.2 8.3）（回车获取最新版）: " version
+			  read -e -p "入力してください${ldnmp_pods}バージョン番号（7.4 8.0 8.1 8.2 8.3）（最新バージョンを入手するには入力）：" version
 			  local version=${version:-8.3}
 			  cd /home/web/
 			  cp /home/web/docker-compose.yml /home/web/docker-compose1.yml
@@ -11680,7 +11680,7 @@ EOF
 								  (crontab -l ; echo "0 0 * * $weekday $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  3)
-								  read -e -p "毎日タスクを実行する時間を選択しますか？ （時間、0-23）：" hour
+								  read -e -p "毎日タスクを実行する時期を選択しますか？ （時間、0-23）：" hour
 								  (crontab -l ; echo "0 $hour * * * $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  4)
@@ -12367,8 +12367,8 @@ linux_file() {
 
 				read -e -p "ターゲットパス（新しいファイル名またはディレクトリ名を含む）を入力してください。" dest_path
 				if [ -z "$dest_path" ]; then
-					echo "エラー：ターゲットパスを入力してください。"
-					send_stats "ファイルまたはディレクトリの移動に失敗しました：宛先パスが指定されていません"
+					echo "错误: 请输入目标路径。"
+					send_stats "移动文件或目录失败: 目标路径未指定"
 					continue
 				fi
 
@@ -12481,7 +12481,7 @@ run_commands_on_servers() {
 	local SERVERS_FILE="$HOME/cluster/servers.py"
 	local SERVERS=$(grep -oP '{"name": "\K[^"]+|"hostname": "\K[^"]+|"port": \K[^,]+|"username": "\K[^"]+|"password": "\K[^"]+' "$SERVERS_FILE")
 
-	# 抽出された情報を配列に変換します
+	# 将提取的信息转换为数组
 	IFS=$'\n' read -r -d '' -a SERVER_ARRAY <<< "$SERVERS"
 
 	# サーバーを繰り返してコマンドを実行します
@@ -12521,10 +12521,10 @@ while true; do
 	  echo -e "${gl_kjlan}------------------------${gl_bai}"
 	  echo -e "${gl_kjlan}サーバーリスト管理${gl_bai}"
 	  echo -e "${gl_kjlan}1.  ${gl_bai}サーバーを追加します${gl_kjlan}2.  ${gl_bai}サーバーを削除します${gl_kjlan}3.  ${gl_bai}サーバーを編集します"
-	  echo -e "${gl_kjlan}4.  ${gl_bai}バックアップクラスター${gl_kjlan}5.  ${gl_bai}クラスターを復元します"
+	  echo -e "${gl_kjlan}4.  ${gl_bai}バックアップクラスター${gl_kjlan}5.  ${gl_bai}还原集群"
 	  echo -e "${gl_kjlan}------------------------${gl_bai}"
-	  echo -e "${gl_kjlan}バッチでタスクを実行します${gl_bai}"
-	  echo -e "${gl_kjlan}11. ${gl_bai}Tech Lionスクリプトをインストールします${gl_kjlan}12. ${gl_bai}システムを更新します${gl_kjlan}13. ${gl_bai}システムを掃除します"
+	  echo -e "${gl_kjlan}批量执行任务${gl_bai}"
+	  echo -e "${gl_kjlan}11. ${gl_bai}安装科技lion脚本         ${gl_kjlan}12. ${gl_bai}システムを更新します${gl_kjlan}13. ${gl_bai}清理系统"
 	  echo -e "${gl_kjlan}14. ${gl_bai}Dockerをインストールします${gl_kjlan}15. ${gl_bai}BBR3をインストールします${gl_kjlan}16. ${gl_bai}1G仮想メモリをセットアップします"
 	  echo -e "${gl_kjlan}17. ${gl_bai}タイムゾーンを上海に設定します${gl_kjlan}18. ${gl_bai}すべてのポートを開きます${gl_kjlan}51. ${gl_bai}カスタムコマンド"
 	  echo -e "${gl_kjlan}------------------------${gl_bai}"
