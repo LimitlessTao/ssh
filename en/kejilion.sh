@@ -1185,7 +1185,7 @@ iptables_panel() {
 
 			  5)
 				  # IP whitelist
-				  read -e -p "Please enter the IP or IP segment to release:" o_ip
+				  read -e -p "Please enter the IP or IP segment to be released:" o_ip
 				  allow_ip $o_ip
 				  ;;
 			  6)
@@ -1738,7 +1738,7 @@ nginx_waf() {
 		wget -O /home/web/nginx.conf "${gh_proxy}raw.githubusercontent.com/kejilion/nginx/main/nginx10.conf"
 	fi
 
-	# Decide to turn on or off WAF according to mode parameters
+	# Decide to turn on or off WAF according to the mode parameter
 	if [ "$mode" == "on" ]; then
 		# Turn on WAF: Remove comments
 		sed -i 's|# load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|' /home/web/nginx.conf > /dev/null 2>&1
@@ -5812,7 +5812,7 @@ list_connections() {
 # Add a new connection
 add_connection() {
 	send_stats "Add a new connection"
-	echo "Create a new connection example:"
+	echo "Example to create a new connection:"
 	echo "- Connection name: my_server"
 	echo "- IP address: 192.168.1.100"
 	echo "- Username: root"
@@ -11680,7 +11680,7 @@ EOF
 								  (crontab -l ; echo "0 0 * * $weekday $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  3)
-								  read -e -p "Choose when to perform tasks every day? (Hours, 0-23):" hour
+								  read -e -p "Choose what time to perform tasks every day? (Hours, 0-23):" hour
 								  (crontab -l ; echo "0 $hour * * * $newquest") | crontab - > /dev/null 2>&1
 								  ;;
 							  4)

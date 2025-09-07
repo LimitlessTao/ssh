@@ -1738,7 +1738,7 @@ nginx_waf() {
 		wget -O /home/web/nginx.conf "${gh_proxy}raw.githubusercontent.com/kejilion/nginx/main/nginx10.conf"
 	fi
 
-	# モードパラメーターに従ってWAFをオンまたはオフにすることを決定します
+	# モードパラメーターに従ってWAFをオンまたはオフにすることにしました
 	if [ "$mode" == "on" ]; then
 		# WAFをオンにしてください：コメントを削除します
 		sed -i 's|# load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|' /home/web/nginx.conf > /dev/null 2>&1
@@ -5812,7 +5812,7 @@ list_connections() {
 # 新しい接続を追加します
 add_connection() {
 	send_stats "新しい接続を追加します"
-	echo "新しい接続例を作成します："
+	echo "新しい接続を作成する例："
 	echo "- 接続名：my_server"
 	echo "-  IPアドレス：192.168.1.100"
 	echo "- ユーザー名：root"
