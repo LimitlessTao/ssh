@@ -812,7 +812,7 @@ docker_ipv6_off() {
 
 	# 檢查設定檔是否存在
 	if [ ! -f "$CONFIG_FILE" ]; then
-		echo -e "${gl_hong}設定檔不存在${gl_bai}"
+		echo -e "${gl_hong}配置文件不存在${gl_bai}"
 		return
 	fi
 
@@ -1074,7 +1074,7 @@ manage_country_rules() {
 			iptables -D OUTPUT -m set --match-set "$ipset_name" dst -j DROP 2>/dev/null
 			ipset flush "$ipset_name"
 
-			# 將 IP 新增至 ipset
+			# 將 IP 新增到 ipset
 			while IFS= read -r ip; do
 				ipset add "$ipset_name" "$ip"
 			done < "${country_code,,}.zone"
@@ -1267,7 +1267,7 @@ add_swap() {
 		mkswap -f "$partition"
 	done
 
-	# 确保 /swapfile 不再被使用
+	# 確保 /swapfile 不再被使用
 	swapoff /swapfile
 
 	# 刪除舊的 /swapfile
@@ -3682,7 +3682,7 @@ EOF
 
 add_forwarding_service() {
 	send_stats "新增frp內網服務"
-	# 提示使用者輸入服務名稱和轉發訊息
+	# 提示用户输入服务名称和转发信息
 	read -e -p "請輸入服務名稱:" service_name
 	read -e -p "請輸入轉送類型 (tcp/udp) [回​​車預設tcp]:" service_type
 	local service_type=${service_type:-tcp}
@@ -4259,7 +4259,7 @@ linux_clean() {
 		journalctl --vacuum-size=500M
 
 	elif command -v apk &>/dev/null; then
-		echo "清理包管理器缓存..."
+		echo "清理包管理器快取..."
 		apk cache clean
 		echo "刪除系統日誌..."
 		rm -rf /var/log/*
@@ -5267,7 +5267,7 @@ optimize_balanced() {
 	echo -e "${gl_lv}其他優化...${gl_bai}"
 	# 還原透明大頁面
 	echo always > /sys/kernel/mm/transparent_hugepage/enabled
-	# 還原 NUMA balancing
+	# 还原 NUMA balancing
 	sysctl -w kernel.numa_balancing=1 2>/dev/null
 
 
@@ -5362,7 +5362,7 @@ Kernel_optimize() {
 	while true; do
 	  clear
 	  send_stats "Linux核心調優管理"
-	  echo "Linux系统内核参数优化"
+	  echo "Linux系統核心參數優化"
 	  echo "影片介紹: https://www.bilibili.com/video/BV1Kb421J7yg?t=0.1"
 	  echo "------------------------------------------------"
 	  echo "提供多種系統參數調優模式，使用者可依自身使用場景進行選擇切換。"
@@ -6168,7 +6168,7 @@ add_task() {
 	read -e -p "請輸入任務名稱:" name
 	read -e -p "請輸入本地目錄:" local_path
 	read -e -p "請輸入遠端目錄:" remote_path
-	read -e -p "请输入远程用户@IP: " remote
+	read -e -p "請輸入遠端使用者@IP:" remote
 	read -e -p "請輸入 SSH 連接埠 (預設 22):" port
 	port=${port:-22}
 
@@ -7213,7 +7213,7 @@ linux_test() {
 			  send_stats "nxtrace指定IP回程測試腳本"
 			  echo "可參考的IP列表"
 			  echo "------------------------"
-			  echo "北京電信: 219.141.136.12"
+			  echo "北京电信: 219.141.136.12"
 			  echo "北京聯通: 202.106.50.1"
 			  echo "北京移動: 221.179.155.161"
 			  echo "上海電信: 202.96.209.133"
@@ -8798,7 +8798,7 @@ linux_panel() {
 				if echo "quit" | timeout $timeout telnet smtp.qq.com $port | grep 'Connected'; then
 				  echo -e "${gl_lv}連接埠$port目前可用${gl_bai}"
 				else
-				  echo -e "${gl_hong}連接埠$port目前不可用${gl_bai}"
+				  echo -e "${gl_hong}連接埠$port 当前不可用${gl_bai}"
 				fi
 				echo ""
 
@@ -11029,7 +11029,7 @@ linux_Settings() {
 	  echo -e "系統工具"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}1.   ${gl_bai}設定腳本啟動快捷鍵${gl_kjlan}2.   ${gl_bai}修改登入密碼"
-	  echo -e "${gl_kjlan}3.   ${gl_bai}ROOT密码登录模式                   ${gl_kjlan}4.   ${gl_bai}安裝Python指定版本"
+	  echo -e "${gl_kjlan}3.   ${gl_bai}ROOT密碼登入模式${gl_kjlan}4.   ${gl_bai}安裝Python指定版本"
 	  echo -e "${gl_kjlan}5.   ${gl_bai}開放所有連接埠${gl_kjlan}6.   ${gl_bai}修改SSH連接埠"
 	  echo -e "${gl_kjlan}7.   ${gl_bai}優化DNS位址${gl_kjlan}8.   ${gl_bai}一鍵重裝系統${gl_huang}★${gl_bai}"
 	  echo -e "${gl_kjlan}9.   ${gl_bai}停用ROOT帳戶建立新帳戶${gl_kjlan}10.  ${gl_bai}切換優先ipv4/ipv6"
@@ -11458,7 +11458,7 @@ EOF
 			done
 
 			echo ""
-			echo "随机UUID"
+			echo "隨機UUID"
 			echo "------------------------"
 			for i in {1..5}; do
 				uuid=$(cat /proc/sys/kernel/random/uuid)
@@ -11615,7 +11615,7 @@ EOF
 		  send_stats "換系統更新來源"
 		  clear
 		  echo "選擇更新來源區域"
-		  echo "接入LinuxMirrors切換系統更新來源"
+		  echo "接入LinuxMirrors切换系统更新源"
 		  echo "------------------------"
 		  echo "1. 中國大陸【預設】 2. 中國大陸【教育網】 3. 海外地區"
 		  echo "------------------------"
@@ -11766,7 +11766,7 @@ EOF
 				echo "------------------------"
 				echo "1. 安裝防禦程序"
 				echo "------------------------"
-				echo "2. 查看SSH攔截記錄"
+				echo "2. 查看SSH拦截记录"
 				echo "3. 日誌即時監控"
 				echo "------------------------"
 				echo "9. 卸載防禦程序"
@@ -12600,7 +12600,7 @@ while true; do
 
 		  51)
 			  send_stats "自訂執行命令"
-			  read -e -p "請輸入批次執行的命令:" mingling
+			  read -e -p "请输入批量执行的命令: " mingling
 			  run_commands_on_servers "${mingling}"
 			  ;;
 
