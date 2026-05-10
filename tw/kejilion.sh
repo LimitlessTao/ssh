@@ -58,7 +58,7 @@ CheckFirstRun_true() {
 
 
 # 收集功能埋藏資訊的函數，記錄當前腳本版本號，使用時間，系統版本，CPU架構，機器所在國家和用戶使用的功能名稱，絕對不涉及任何敏感信息，請放心！請相信我！
-# 为什么要设计这个功能，目的更好的了解用户喜欢使用的功能，进一步优化功能推出更多符合用户需求的功能。
+# 為什麼要設計這個功能，目的更好的了解使用者喜歡使用的功能，進一步優化功能推出更多符合使用者需求的功能。
 # 全文可搜尋 send_stats 函數呼叫位置，透明開源，如有顧慮可拒絕使用。
 
 
@@ -655,7 +655,7 @@ while true; do
 	case $sub_choice in
 		1)
 			send_stats "拉取鏡像"
-			read -e -p "请输入镜像名（多个镜像名请用空格分隔）: " imagenames
+			read -e -p "請輸入鏡像名稱（多個鏡像名稱請以空格分隔）:" imagenames
 			for name in $imagenames; do
 				echo -e "${gl_huang}正在取得鏡像:$name${gl_bai}"
 				docker pull $name
@@ -812,7 +812,7 @@ docker_ipv6_off() {
 
 	# 檢查設定檔是否存在
 	if [ ! -f "$CONFIG_FILE" ]; then
-		echo -e "${gl_hong}配置文件不存在${gl_bai}"
+		echo -e "${gl_hong}設定檔不存在${gl_bai}"
 		return
 	fi
 
@@ -907,7 +907,7 @@ close_port() {
 	install iptables
 
 	for port in "${ports[@]}"; do
-		# 删除已存在的打开规则
+		# 刪除已存在的開啟規則
 		iptables -D INPUT -p tcp --dport $port -j ACCEPT 2>/dev/null
 		iptables -D INPUT -p udp --dport $port -j ACCEPT 2>/dev/null
 
@@ -1090,7 +1090,7 @@ manage_country_rules() {
 			;;
 
 		unblock)
-			# 删除国家的 iptables 规则
+			# 刪除國家的 iptables 規則
 			iptables -D INPUT -m set --match-set "$ipset_name" src -j DROP 2>/dev/null
 			iptables -D OUTPUT -m set --match-set "$ipset_name" dst -j DROP 2>/dev/null
 
@@ -1257,7 +1257,7 @@ iptables_panel() {
 add_swap() {
 	local new_swap=$1  # 获取传入的参数
 
-	# 取得目前系統中所有的 swap 分割區
+	# 取得目前系統中所有的 swap 分區
 	local swap_partitions=$(grep -E '^/dev/' /proc/swaps | awk '{print $1}')
 
 	# 遍歷並刪除所有的 swap 分割區
@@ -1750,7 +1750,7 @@ nginx_waf() {
 		sed -i 's|^\(\s*\)modsecurity on;|\1# modsecurity on;|' /home/web/nginx.conf > /dev/null 2>&1
 		sed -i 's|^\(\s*\)modsecurity_rules_file /etc/nginx/modsec/modsecurity.conf;|\1# modsecurity_rules_file /etc/nginx/modsec/modsecurity.conf;|' /home/web/nginx.conf > /dev/null 2>&1
 	else
-		echo "无效的参数：使用 'on' 或 'off'"
+		echo "無效的參數：使用 'on' 或 'off'"
 		return 1
 	fi
 
@@ -2122,7 +2122,7 @@ web_security() {
 					  echo -e "${gl_huang}網站每5分鐘自動偵測，當達偵測到高負載會自動開盾，低負載也會自動關閉5秒盾。${gl_bai}"
 					  echo "--------------"
 					  echo "取得CF參數:"
-					  echo -e "到cf后台右上角我的个人资料，选择左侧API令牌，获取${gl_huang}Global API Key${gl_bai}"
+					  echo -e "到cf後台右上角我的個人資料，選擇左側API令牌，取得${gl_huang}Global API Key${gl_bai}"
 					  echo -e "到cf後台域名概要頁面右下方獲取${gl_huang}區域ID${gl_bai}"
 					  echo "https://dash.cloudflare.com/login"
 					  echo "--------------"
@@ -2741,7 +2741,7 @@ while true; do
 	echo "1. 安裝 2. 更新 3. 卸載"
 	echo "------------------------"
 	echo "5. 新增網域存取 6. 刪除網域存取"
-	echo "7. 允许IP+端口访问   8. 阻止IP+端口访问"
+	echo "7. 允許IP+連接埠存取 8. 阻止IP+連接埠訪問"
 	echo "------------------------"
 	echo "0. 返回上一級選單"
 	echo "------------------------"
@@ -2851,7 +2851,7 @@ docker_app_plus() {
 		fi
 		echo ""
 		echo "------------------------"
-		echo "1. 安装             2. 更新             3. 卸载"
+		echo "1. 安裝 2. 更新 3. 卸載"
 		echo "------------------------"
 		echo "5. 新增網域存取 6. 刪除網域存取"
 		echo "7. 允許IP+連接埠存取 8. 阻止IP+連接埠訪問"
@@ -3119,7 +3119,7 @@ ldnmp_install_status_one() {
    if docker inspect "php" &>/dev/null; then
 	clear
 	send_stats "無法再次安裝LDNMP環境"
-	echo -e "${gl_huang}提示:${gl_bai}建站环境已安装。无需再次安装！"
+	echo -e "${gl_huang}提示:${gl_bai}建站環境已安裝。無需再次安裝！"
 	break_end
 	linux_ldnmp
    fi
@@ -3132,7 +3132,7 @@ cd ~
 send_stats "安裝LDNMP環境"
 root_use
 clear
-echo -e "${gl_huang}LDNMP环境未安装，开始安装LDNMP环境...${gl_bai}"
+echo -e "${gl_huang}LDNMP環境未安裝，開始安裝LDNMP環境...${gl_bai}"
 check_disk_space 3
 check_port
 install_dependency
@@ -3648,7 +3648,7 @@ EOF
 	echo
 	echo "FRP面板資訊"
 	echo "FRP面板位址: http://$ipv4_address:$dashboard_port"
-	echo "FRP面板用户名: $dashboard_user"
+	echo "FRP面板使用者名稱:$dashboard_user"
 	echo "FRP面板密碼:$dashboard_pwd"
 	echo
 
@@ -3791,7 +3791,7 @@ list_forwarding_services() {
 	}
 
 	END {
-		# 打印最后一个服务的信息
+		# 列印最後一個服務的訊息
 		if (current_service != "" && current_service != "common" && local_ip != "" && local_port != "") {
 			printf "%-16s %-21s %-26s %-10s\n", \
 				current_service, \
@@ -3809,7 +3809,7 @@ get_frp_ports() {
 	mapfile -t ports < <(ss -tulnape | grep frps | awk '{print $5}' | awk -F':' '{print $NF}' | sort -u)
 }
 
-# 生成访问地址
+# 產生訪問地址
 generate_access_urls() {
 	# 首先獲取所有連接埠
 	get_frp_ports
@@ -3941,7 +3941,7 @@ frps_panel() {
 
 			7)
 				send_stats "允許IP存取"
-				read -e -p "请输入需要放行的端口: " frps_port
+				read -e -p "請輸入需要放行的連接埠:" frps_port
 				clear_host_port_rules "$frps_port" "$ipv4_address"
 				;;
 
@@ -5664,7 +5664,7 @@ create_backup() {
 	# 提示使用者輸入備份目錄
 	echo "建立備份範例："
 	echo "- 備份單一目錄: /var/www"
-	echo "  - 备份多个目录: /etc /home /var/log"
+	echo "- 備份多個目錄: /etc /home /var/log"
 	echo "- 直接回車將使用預設目錄 (/etc /usr /home)"
 	read -r -p "請輸入要備份的目錄（多個目錄以空格分隔，直接回車則使用預設目錄）：" input
 
@@ -6049,7 +6049,7 @@ list_mounted_partitions() {
 	df -h | grep -v "tmpfs\|udev\|overlay"
 }
 
-# 格式化分区
+# 格式化分割區
 format_partition() {
 	send_stats "格式化分割區"
 	read -e -p "請輸入要格式化的分割區名稱（例如 sda1）:" PARTITION
@@ -6062,7 +6062,7 @@ format_partition() {
 
 	# 檢查分割區是否已經掛載
 	if lsblk -o MOUNTPOINT | grep -w "$PARTITION" > /dev/null; then
-		echo "分区已经挂载，请先卸载！"
+		echo "分割區已經掛載，請先卸載！"
 		return
 	fi
 
@@ -6864,12 +6864,12 @@ linux_docker() {
 	  echo -e "${gl_kjlan}7.   ${gl_bai}清理無用的docker容器和映像網路資料卷"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}8.   ${gl_bai}更換Docker源"
-	  echo -e "${gl_kjlan}9.   ${gl_bai}编辑daemon.json文件"
+	  echo -e "${gl_kjlan}9.   ${gl_bai}編輯daemon.json文件"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}11.  ${gl_bai}開啟Docker-ipv6訪問"
 	  echo -e "${gl_kjlan}12.  ${gl_bai}關閉Docker-ipv6訪問"
 	  echo -e "${gl_kjlan}------------------------"
-	  echo -e "${gl_kjlan}20.  ${gl_bai}卸载Docker环境"
+	  echo -e "${gl_kjlan}20.  ${gl_bai}解除安裝Docker環境"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}0.   ${gl_bai}返回主選單"
 	  echo -e "${gl_kjlan}------------------------${gl_bai}"
@@ -7143,7 +7143,7 @@ linux_test() {
 	  echo -e "${gl_kjlan}12.  ${gl_bai}mtr_trace 三網回程線路測試"
 	  echo -e "${gl_kjlan}13.  ${gl_bai}Superspeed 三網測速"
 	  echo -e "${gl_kjlan}14.  ${gl_bai}nxtrace 快速回程測試腳本"
-	  echo -e "${gl_kjlan}15.  ${gl_bai}nxtrace 指定IP回程测试脚本"
+	  echo -e "${gl_kjlan}15.  ${gl_bai}nxtrace 指定IP回程測試腳本"
 	  echo -e "${gl_kjlan}16.  ${gl_bai}ludashi2020 三線線路測試"
 	  echo -e "${gl_kjlan}17.  ${gl_bai}i-abc 多功能測速腳本"
 	  echo -e "${gl_kjlan}18.  ${gl_bai}NetQuality 網路品質體檢腳本${gl_huang}★${gl_bai}"
@@ -7211,7 +7211,7 @@ linux_test() {
 		  15)
 			  clear
 			  send_stats "nxtrace指定IP回程測試腳本"
-			  echo "可参考的IP列表"
+			  echo "可參考的IP列表"
 			  echo "------------------------"
 			  echo "北京電信: 219.141.136.12"
 			  echo "北京聯通: 202.106.50.1"
@@ -8307,7 +8307,7 @@ linux_ldnmp() {
 		  fi
 		  echo "------------------------"
 		  echo
-		  echo "1. 更新nginx               2. 更新mysql              3. 更新php              4. 更新redis"
+		  echo "1. 更新nginx 2. 更新mysql 3. 更新php 4. 更新redis"
 		  echo "------------------------"
 		  echo "5. 更新完整環境"
 		  echo "------------------------"
@@ -8788,7 +8788,7 @@ linux_panel() {
 
 				clear
 				echo -e "郵局服務$check_docker $update_status"
-				echo "poste.io 是一个开源的邮件服务器解决方案，"
+				echo "poste.io 是一個開源的郵件伺服器解決方案，"
 				echo "影片介紹: https://www.bilibili.com/video/BV1wv421C71t?t=0.1"
 
 				echo ""
@@ -9971,7 +9971,7 @@ linux_panel() {
 
 		  51)
 			clear
-			send_stats "PVE开小鸡"
+			send_stats "PVE開小雞"
 			check_disk_space 1
 			curl -L ${gh_proxy}raw.githubusercontent.com/oneclickvirt/pve/main/scripts/install_pve.sh -o install_pve.sh && chmod +x install_pve.sh && bash install_pve.sh
 			  ;;
@@ -10617,7 +10617,7 @@ linux_panel() {
 			docker_rum() {
 
 				read -e -p "設定${docker_name}的登入使用者名稱:" app_use
-				read -e -p "設定${docker_name}的登录密码: " app_passwd
+				read -e -p "設定${docker_name}的登入密碼:" app_passwd
 
 				docker run -d \
 				  --name xunlei \
@@ -10991,7 +10991,7 @@ linux_work() {
 			  ;;
 
 		  24)
-			  read -e -p "请输入要删除的工作区名称: " gongzuoqu_name
+			  read -e -p "請輸入要刪除的工作區名稱:" gongzuoqu_name
 			  tmux kill-window -t $gongzuoqu_name
 			  send_stats "刪除工作區"
 			  ;;
@@ -12069,16 +12069,16 @@ EOF
 			  send_stats "一條龍調優"
 			  echo "一條龍系統調優"
 			  echo "------------------------------------------------"
-			  echo "将对以下内容进行操作与优化"
-			  echo "1. 更新系统到最新"
-			  echo "2. 清理系统垃圾文件"
-			  echo -e "3. 设置虚拟内存${gl_huang}1G${gl_bai}"
+			  echo "將對以下內容進行操作與優化"
+			  echo "1. 更新系統到最新"
+			  echo "2. 清理系統垃圾文件"
+			  echo -e "3. 設定虛擬內存${gl_huang}1G${gl_bai}"
 			  echo -e "4. 設定SSH埠號為${gl_huang}5522${gl_bai}"
-			  echo -e "5. 开放所有端口"
-			  echo -e "6. 开启${gl_huang}BBR${gl_bai}加速"
-			  echo -e "7. 设置时区到${gl_huang}上海${gl_bai}"
-			  echo -e "8. 自动优化DNS地址${gl_huang}海外: 1.1.1.1 8.8.8.8  国内: 223.5.5.5 ${gl_bai}"
-			  echo -e "9. 安装基础工具${gl_huang}docker wget sudo tar unzip socat btop nano vim${gl_bai}"
+			  echo -e "5. 開放所有端口"
+			  echo -e "6. 開啟${gl_huang}BBR${gl_bai}加速"
+			  echo -e "7. 設定時區到${gl_huang}上海${gl_bai}"
+			  echo -e "8. 自動優化DNS位址${gl_huang}海外: 1.1.1.1 8.8.8.8 國內: 223.5.5.5${gl_bai}"
+			  echo -e "9. 安裝基礎工具${gl_huang}docker wget sudo tar unzip socat btop nano vim${gl_bai}"
 			  echo -e "10. Linux系統核心參數優化切換到${gl_huang}均衡最佳化模式${gl_bai}"
 			  echo "------------------------------------------------"
 			  read -e -p "確定一鍵保養嗎？ (Y/N):" choice
@@ -12291,7 +12291,7 @@ linux_file() {
 				send_stats "進入目錄"
 				;;
 			2)  # 创建目录
-				read -e -p "请输入要创建的目录名: " dirname
+				read -e -p "請輸入要建立的目錄名稱:" dirname
 				mkdir -p "$dirname" && echo "目錄已建立" || echo "創建失敗"
 				send_stats "建立目錄"
 				;;
@@ -12450,7 +12450,7 @@ EOF
 
 
 			0)  # 返回上一级选单
-				send_stats "返回上一级选单菜单"
+				send_stats "返回上一層選單選單"
 				break
 				;;
 			*)  # 处理无效输入
